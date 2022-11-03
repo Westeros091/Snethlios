@@ -1,0 +1,6 @@
++ Tạo logo, icon
++ Kiếm hình ảnh giày
++ java word 
++ java biểu đồ
++ Erd
++ Java id face
