@@ -27,7 +27,7 @@ public class Main extends javax.swing.JFrame {
 //        Image img = new ImageIcon(Main.class.getResource("\\snethlios\\icon\\logo.jpg")).getImage();
 //        this.setIconImage(img);
 //        this.setIconImage(XImage.getApImage());
-        this.setIconImage(XImage.APP_ICON);
+//        this.setIconImage(XImage.APP_ICON);
     }
     /**
      * This method is called from within the constructor to initialize the form.
