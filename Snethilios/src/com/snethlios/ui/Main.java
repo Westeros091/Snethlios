@@ -6,6 +6,8 @@
 package com.snethlios.ui;
 
 import com.snethlios.utils.XImage;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,8 +23,11 @@ public class Main extends javax.swing.JFrame {
         init();
     }
     void init(){
-        setLocationRelativeTo(null);
-        setIconImage(XImage.APP_ICON);
+        this.setLocationRelativeTo(null);
+//        Image img = new ImageIcon(Main.class.getResource("\\snethlios\\icon\\logo.jpg")).getImage();
+//        this.setIconImage(img);
+//        this.setIconImage(XImage.getApImage());
+        this.setIconImage(XImage.APP_ICON);
     }
     /**
      * This method is called from within the constructor to initialize the form.
