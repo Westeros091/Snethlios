@@ -1746,7 +1746,7 @@
                                       <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton8" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -2168,7 +2168,7 @@
                           <Component id="jPanel40" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel42" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="16" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2946,7 +2946,7 @@
                       <Component id="jPanel27" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jTabbedPane3" min="-2" pref="351" max="-2" attributes="0"/>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -3351,7 +3351,7 @@
                                   <Component id="jPanel41" max="32767" attributes="0"/>
                                   <Component id="jPanel39" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="20" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3823,7 +3823,7 @@
                       <Component id="jPanel24" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel25" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="66" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
@@ -4067,12 +4067,12 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextField32" pref="237" max="32767" attributes="0"/>
-                                      <Component id="jTextField31" pref="237" max="32767" attributes="0"/>
-                                      <Component id="jTextField33" pref="237" max="32767" attributes="0"/>
-                                      <Component id="jTextField34" pref="237" max="32767" attributes="0"/>
-                                      <Component id="jTextField35" pref="237" max="32767" attributes="0"/>
-                                      <Component id="jTextField36" pref="237" max="32767" attributes="0"/>
+                                      <Component id="jTextField32" max="32767" attributes="0"/>
+                                      <Component id="jTextField31" max="32767" attributes="0"/>
+                                      <Component id="jTextField33" max="32767" attributes="0"/>
+                                      <Component id="jTextField34" max="32767" attributes="0"/>
+                                      <Component id="jTextField35" max="32767" attributes="0"/>
+                                      <Component id="jTextField36" max="32767" attributes="0"/>
                                       <Component id="jScrollPane11" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
