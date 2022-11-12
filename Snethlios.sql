@@ -1,7 +1,7 @@
 ﻿use master
 go
 
-drop database Snethlios
+
 
 -- create database Snethlios
 create database Snethlios

@@ -128,14 +128,14 @@ public class DangNhap extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Snap ITC", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(153, 0, 0));
         jLabel6.setText("SNETHLIOS SNEAKERS STORE");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 30, 490, 70));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 460, 70));
 
         jSeparator1.setBackground(new java.awt.Color(153, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(204, 0, 0));
         jSeparator1.setAlignmentX(1.0F);
         jSeparator1.setAlignmentY(1.0F);
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 470, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 93, 470, 10));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/snethlios/icon/bannerLogin.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 1200, 530));
