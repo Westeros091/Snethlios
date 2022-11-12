@@ -1,4 +1,5 @@
-﻿create table CHUCVU
+﻿
+create table CHUCVU
 (
 	MACV varchar(10) primary key,
 	TENCV nvarchar(30) not null,
