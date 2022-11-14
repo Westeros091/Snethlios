@@ -17,6 +17,7 @@ public class GiaoDienChinh extends javax.swing.JFrame {
     public GiaoDienChinh() {
         initComponents();
         setLocationRelativeTo(null);
+        init();
     }
 
     /**
@@ -278,7 +279,7 @@ public class GiaoDienChinh extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
            pnlView.removeAll();
-        NhanVien nv = new NhanVien();
+        NhanVienEx nv = new NhanVienEx();
         pnlView.add(nv).setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -347,4 +348,9 @@ public class GiaoDienChinh extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel pnlView;
     // End of variables declaration//GEN-END:variables
+
+    void init(){
+        new Chao().setVisible(true);
+    }
+    
 }

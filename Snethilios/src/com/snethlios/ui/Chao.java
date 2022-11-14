@@ -72,7 +72,7 @@ public class Chao extends javax.swing.JFrame {
         }
      }
      void openWelcome() {
-        new DangNhap().setVisible(true);
+        new DangNhapJFrame().setVisible(true);
     }
 
     /**

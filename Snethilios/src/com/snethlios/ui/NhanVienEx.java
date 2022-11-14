@@ -9,12 +9,12 @@ package com.snethlios.ui;
  *
  * @author ASUS
  */
-public class NhanVien extends javax.swing.JInternalFrame {
+public class NhanVienEx extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NhanVien
      */
-    public NhanVien() {
+    public NhanVienEx() {
         initComponents();
     }
 
