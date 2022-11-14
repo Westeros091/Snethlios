@@ -1,8 +1,6 @@
 ﻿use master
 go
 
-
-
 -- create database Snethlios
 create database Snethlios
 go
