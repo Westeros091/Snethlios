@@ -24,56 +24,43 @@ public class Chao extends javax.swing.JFrame {
         setIconImage(XImage.getApImage());
         setLocationRelativeTo(null);
     }
-    
-     String check="";
- 
-     void intit(){
-         
-            setTitle("Xin Chào Bạn Đến Với Ứng Dụng EduSys");
-            new Timer(30, new ActionListener() {
+
+    String check = "";
+
+    void intit() {
+
+        setTitle("Xin Chào Bạn Đến Với Ứng Dụng EduSys");
+        new Timer(30, new ActionListener() {
             @Override
-            
+
             public void actionPerformed(ActionEvent e) {
-              
-                setLocationRelativeTo(null); 
+                setLocationRelativeTo(null);
                 int value = pngLoad.getValue();
-                int a=0;
-               
-               if (value < 100) {
+                int a = 0;
+                if (value < 100) {
                     pngLoad.setValue(value + 1);
-                    a=value+1;
-                    lblChao.setText(a+"%");
-                    if(value<30){
+                    a = value + 1;
+                    lblChao.setText(a + "%");
+                    if (value < 30) {
                         lblChao.setText("Hệ Thống Cửa Hàng Giày Sneakers Snethlios");
-                    }else{
+                    } else {
                         lblChao.setText("Snethlios Chuyên Cung Cấp Giày Sneakers");
-                    }if(value>60){
+                    }
+                    if (value > 60) {
                         lblChao.setText("Snethlios Sneakers Kính Chào Quý Khách");
                     }
-                    if(value>90){
-                       lblChao.setText("Mọi thứ đã sẵn sàng ! Bắt Đầu");
-                     
+                    if (value > 90) {
+                        lblChao.setText("Mọi thứ đã sẵn sàng ! Bắt Đầu");
                     }
-                }else{
-                    check+="Stop";     
-                    checkwwin();
+                } else {
                     Chao.this.dispose();
-                         
-                    } 
-                
+                }
+
             }
         }).start();
-       checkwwin();
-       
+
     }
-     void checkwwin(){
-          if(check.equals("Stop")){
-            openWelcome();
-        }
-     }
-     void openWelcome() {
-        new DangNhap().setVisible(true);
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
