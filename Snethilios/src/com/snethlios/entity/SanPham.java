@@ -22,11 +22,12 @@ public class SanPham {
     private String hang;
     private String hinh;
     private Date ngayNhap;
+    private String maNV;
 
     public SanPham() {
     }
 
-    public SanPham(String maSp, String tenSp, String loai, Double donGia, int soLuong, String mau, int kichThuoc, String hang, String hinh, Date ngayNhap) {
+    public SanPham(String maSp, String tenSp, String loai, Double donGia, int soLuong, String mau, int kichThuoc, String hang, String hinh, Date ngayNhap, String maNV) {
         this.maSp = maSp;
         this.tenSp = tenSp;
         this.loai = loai;
@@ -37,8 +38,10 @@ public class SanPham {
         this.hang = hang;
         this.hinh = hinh;
         this.ngayNhap = ngayNhap;
+        this.maNV = maNV;
     }
 
+ 
 
 
 
@@ -132,6 +135,14 @@ public class SanPham {
 
     public void setNgayNhap(Date ngayNhap) {
         this.ngayNhap = ngayNhap;
+    }
+
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
     

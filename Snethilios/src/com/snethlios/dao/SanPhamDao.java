@@ -88,6 +88,7 @@ public class SanPhamDao extends SnethliosDAO<SanPham, String> {
         model.setHang(rs.getString("HANG"));
         model.setHinh(rs.getString("HINH"));
         model.setNgayNhap(rs.getDate("NgayNhap"));
+        model.setMaNV(rs.getString("MANV"));
         return model;
     }
 

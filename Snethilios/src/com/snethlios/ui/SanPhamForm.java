@@ -26,6 +26,7 @@ int index = -1;
      */
     public SanPhamForm() {
         initComponents();
+        loadData();
     }
   SanPhamDao dao = new SanPhamDao();
 void loadData() {
@@ -73,7 +74,7 @@ void loadData() {
         this.setStatus(false);
 
     }
-//    ChuyenDeDAO cddao = new ChuyenDeDAO();
+
 
     void setForm(SanPham model) {
         txtmaSP.setText(model.getMaSp());
@@ -87,10 +88,7 @@ void loadData() {
         txtNgayNhap.setText(String.valueOf(model.getNgayNhap()));
         cboHang.setToolTipText(String.valueOf(model.getHang()));
         lblAnh.setText(model.getHinh());
-        
-//        cboChuyenDe.setToolTipText(String.valueOf(model.getMaKH()));
-//        cboChuyenDe.setSelectedItem(cddao.findById(model.getMaCD()));
-//        txtChuyenDe.setText(String.valueOf(model.getMaCD()));
+
 
     }
 
@@ -104,20 +102,6 @@ void loadData() {
         model.setMau(txtMau.getText());
         model.setKichThuoc(Integer.parseInt(txtKichThuoc.getText()));
         model.setHang(String.valueOf(cboHang.getToolTipText()));
-//        model.setMaPn();
-//        ChuyenDe chuyenDe = (ChuyenDe) cboChuyenDe.getSelectedItem();
-//        model.setMaCD(chuyenDe.getMaCD());
-//        model.setNgayKG(XDate.toDate(txtKhaiGiang.getText(), "dd-MM-yyy"));
-//        model.setHocPhi(Double.valueOf(txtHocPhi.getText()));
-//        model.setThoiLuong(Integer.valueOf(txtThoiLuong.getText()));
-//        model.setGhiChu(txtGhiChu.getText());
-////        model.setMaNV(txtNguoiTao.getText());
-//        model.setMaNV(ShareHelper.USER.getMaNV());
-//
-//        Date now = new Date();
-//        model.setNgayTao(XDate.addDays(now, 10));
-//        model.setMaKH(Integer.valueOf(cboChuyenDe.getToolTipText()));
-//        model.setNgayTao(XDate.addDays(, WIDTH));
         return model;
     }
 
@@ -128,10 +112,6 @@ void loadData() {
 
         boolean first = this.index > 0;
         boolean last = this.index < tblSanPham.getRowCount() - 1;
-//        btnFirst.setEnabled(!insertable && first);
-//        btnPrev.setEnabled(!insertable && first);
-//        btnLast.setEnabled(!insertable && last);
-//        btnNext.setEnabled(!insertable && last);
 
     }
 
