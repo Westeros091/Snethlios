@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,13 +30,19 @@ public class NhanVienDAO extends SnethliosDAO<NhanVien, String> {
     }
 
     @Override
-    public void delete(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(String MaNV) {
+        String sql = "DELETE FROM NhanVien WHERE MaNV=?";
+        try {
+            JdbcHelper.update(sql, MaNV);
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public List<NhanVien> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM NhanVien";
+        return selectBySQL(sql);
     }
 
     @Override
@@ -64,17 +72,17 @@ public class NhanVienDAO extends SnethliosDAO<NhanVien, String> {
     }
 
     private NhanVien readFromResultSet(ResultSet rs) throws SQLException {
-        NhanVien model = new NhanVien();
-        model.setMaNV(rs.getString("MANV").trim());
-        model.setTenNV(rs.getString("TENNV").trim());
-        model.setMatKhau(rs.getString("MATKHAU").trim());
-        model.setVaiTro(rs.getBoolean("VaiTro"));
-        model.setEmail(rs.getString("EMAIL").trim());
-        model.setDiaChi(rs.getString("DIACHI").trim());
-        model.setSDT(rs.getString("SĐT").trim());
-        model.setCCCD(rs.getString("CCCD").trim());
-        model.setHinh(rs.getString("HINH").trim());
-        return model;
+        NhanVien nv = new NhanVien();
+        nv.setMaNV(rs.getString("MANV"));
+        nv.setTenNV(rs.getString("TENNV"));
+        nv.setMatKhau(rs.getString("MATKHAU"));
+        nv.setVaiTro(rs.getBoolean("VaiTro"));
+        nv.setEmail(rs.getString("EMAIL"));
+        nv.setDiaChi(rs.getString("DIACHI"));
+        nv.setSDT(rs.getString("SDT"));
+        nv.setCCCD(rs.getString("CCCD"));
+        nv.setHinh(rs.getString("HINH"));
+        return nv;
     }
 
 }

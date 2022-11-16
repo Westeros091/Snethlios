@@ -10,6 +10,7 @@ import com.snethlios.entity.NhanVien;
 import com.snethlios.utils.Auth;
 import com.snethlios.utils.MD5;
 import com.snethlios.utils.MsgBox;
+import java.util.List;
 
 /**
  *
@@ -37,13 +38,13 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblUserName = new javax.swing.JLabel();
-        txtUserName = new javax.swing.JTextField();
+        txtMaNV = new javax.swing.JTextField();
         lblPassWord = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
         btnQuenMK = new javax.swing.JButton();
         lblTitle2 = new javax.swing.JLabel();
-        txtPassWord = new javax.swing.JPasswordField();
+        txtMatKhau = new javax.swing.JPasswordField();
         lblAnh = new javax.swing.JLabel();
         lblTitile1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -74,6 +75,11 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSignUp.setText("SignUp");
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUpActionPerformed(evt);
+            }
+        });
 
         btnQuenMK.setText("Quên Mật Khẩu?");
 
@@ -91,7 +97,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtUserName))
+                        .addComponent(txtMaNV))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -101,7 +107,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                                 .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtPassWord))))
+                            .addComponent(txtMatKhau))))
                 .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -114,20 +120,22 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(txtMaNV)
+                        .addGap(2, 2, 2))
+                    .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSignUp)
                     .addComponent(btnLogin))
                 .addGap(29, 29, 29)
                 .addComponent(btnQuenMK)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 400, 300));
@@ -171,6 +179,10 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         login();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,8 +233,8 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitile1;
     private javax.swing.JLabel lblTitle2;
     private javax.swing.JLabel lblUserName;
-    private javax.swing.JPasswordField txtPassWord;
-    private javax.swing.JTextField txtUserName;
+    private javax.swing.JTextField txtMaNV;
+    private javax.swing.JPasswordField txtMatKhau;
     // End of variables declaration//GEN-END:variables
 
     void init() {
@@ -232,24 +244,38 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     NhanVienDAO dao = new NhanVienDAO();
 
     void login() {
-        String manv = txtUserName.getText().trim();
-        String matKhau = String.valueOf(txtPassWord.getPassword());
-        NhanVien nv = dao.selectByID(manv);
-        String matKhauMD5 = MD5.getMd5(matKhau);
-        if (nv == null) {
-            MsgBox.alert(this, "Sai tên đăng nhập");
-        } else if (!matKhauMD5.equalsIgnoreCase(nv.getMatKhau())) {
-            MsgBox.alert(this, "Sai mật khẩu");
-        } else {
-            Auth.user = nv;
-            this.dispose();
+        if (validateForm()) {
+            String maNV = txtMaNV.getText();
+            String matKhau = String.valueOf(txtMatKhau.getPassword());
+            String matKhauMD5 = MD5.getMd5(matKhau);
+            NhanVien nhanVien = dao.selectByID(maNV);
+            if (nhanVien == null) {
+                MsgBox.alert(this, "Sai tên đăng nhập");
+            } else if (!matKhauMD5.equalsIgnoreCase(nhanVien.getMatKhau())) {
+                MsgBox.alert(this, "Sai mật khẩu");
+            } else {
+                Auth.user = nhanVien;
+                MsgBox.alert(this, "Thành công!");
+            }
         }
     }
 
-    void exit() {
-        if (MsgBox.confirm(this, "Bạn có muốn thoát khỏi ứng dụng không?")) {
-            System.exit(0);
+    boolean validateForm() {
+        String matKhau = new String(txtMatKhau.getPassword());
+        if (txtMaNV.getText().length() == 0 && matKhau.length() == 0) {
+            MsgBox.alert(this, "Không được để trống tên đăng nhập và mật khẩu");
+            return false;
         }
+        if (txtMaNV.getText().length() == 0) {
+            MsgBox.alert(this, "Không được để trống tên đăng nhập");
+            return false;
+        }
+        if (matKhau.length() == 0) {
+            MsgBox.alert(this, "Không được được để trống mật khẩu");
+            return false;
+        }
+        return true;
     }
+    
 
 }

@@ -24,16 +24,17 @@ public class JdbcHelper {
         try {
             Class.forName(driver);
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     public static PreparedStatement getStmt(String sql, Object... args) throws SQLException {
-        Connection con = DriverManager.getConnection(driver, user, pass);
+        Connection conn = DriverManager.getConnection(dburl, user, pass);
         PreparedStatement stmt;
         if (sql.trim().startsWith("{")) {
-            stmt = con.prepareCall(sql);// proc
+            stmt = conn.prepareCall(sql);// proc
         } else {
-            stmt = con.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql); // sql
         }
         for (int i = 0; i < args.length; i++) {
             stmt.setObject(i + 1, args[i]);
