@@ -56,7 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 } else if (index == 1) {
                     setForm(sanPham);
                 } else if (index == 2) {
-                    setForm(form3);
+                    setForm(sanPham);
                 } else if (index == 3) {
                     setForm(test);
                 } else if (index == 4) {
