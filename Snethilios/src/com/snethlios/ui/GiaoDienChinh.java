@@ -250,7 +250,7 @@ public class GiaoDienChinh extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         pnlView.removeAll();
-        SanPham sp = new SanPham();
+        SanPhamForm sp = new SanPhamForm();
         pnlView.add(sp).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
