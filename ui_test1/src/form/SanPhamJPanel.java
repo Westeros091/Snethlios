@@ -441,7 +441,6 @@ public class SanPhamJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_lblAnhMouseClicked
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
         this.chonAnh();
     }//GEN-LAST:event_jButton17ActionPerformed
 
