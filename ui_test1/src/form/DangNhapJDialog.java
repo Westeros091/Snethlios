@@ -9,6 +9,7 @@ import com.snethlios.entity.NhanVien;
 import com.snethlios.utils.Auth;
 import com.snethlios.utils.MD5;
 import com.snethlios.utils.MsgBox;
+import com.snethlios.utils.XImage;
 
 /**
  *
@@ -50,16 +51,17 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(102, 102, 102)));
 
-        lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblUserName.setText("UserName:");
+        lblUserName.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblUserName.setText("Username:");
 
-        lblPassWord.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblPassWord.setText("PassWord:");
+        txtMaNV.setText("TeoNV");
 
-        btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPassWord.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblPassWord.setText("Password:");
+
+        btnLogin.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +69,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
-        btnSignUp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnSignUp.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnSignUp.setText("SignUp");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,11 +77,14 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             }
         });
 
+        btnQuenMK.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         btnQuenMK.setText("Quên Mật Khẩu?");
 
-        lblTitle2.setFont(new java.awt.Font("STLiti", 1, 24)); // NOI18N
+        lblTitle2.setFont(new java.awt.Font("Snap ITC", 1, 24)); // NOI18N
         lblTitle2.setForeground(new java.awt.Color(153, 0, 0));
         lblTitle2.setText("LOGIN");
+
+        txtMatKhau.setText("songlong");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,14 +120,14 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addComponent(lblTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtMaNV)
-                        .addGap(2, 2, 2))
-                    .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)
+                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPassWord, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSignUp)
@@ -179,7 +184,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                         .addComponent(lblTitile1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(24, Short.MAX_VALUE)
+                        .addContainerGap(27, Short.MAX_VALUE)
                         .addComponent(lblAnh)
                         .addGap(18, 18, 18)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,6 +274,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     void init() {
         this.setLocationRelativeTo(null);
+        this.setIconImage(XImage.getApImage());
     }
 
     NhanVienDAO dao = new NhanVienDAO();

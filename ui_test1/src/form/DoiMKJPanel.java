@@ -8,6 +8,7 @@ import com.snethlios.dao.NhanVienDAO;
 import com.snethlios.utils.Auth;
 import com.snethlios.utils.MD5;
 import com.snethlios.utils.MsgBox;
+import com.snethlios.utils.XImage;
 
 /**
  *
@@ -77,24 +78,23 @@ public class DoiMKJPanel extends javax.swing.JPanel {
                             .addComponent(lblMaNV))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                             .addComponent(txtMatKhauHT))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblXacNhanMK)
+                            .addComponent(lblMatKhauMoi))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMatKhauMoi)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblMatKhauMoi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblXacNhanMK)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtXacNhanMK, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 212, Short.MAX_VALUE)
                                 .addComponent(btnXacNhan)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnHuy)))))
+                                .addComponent(btnHuy))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtXacNhanMK)
+                                .addGap(2, 2, 2)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,26 +143,25 @@ public class DoiMKJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     NhanVienDAO dao = new NhanVienDAO();
-    
-    void doiMK(){
+
+    void doiMK() {
         String maNV = txtMaNV.getText();
         String MKHT = String.valueOf(txtMatKhauHT.getPassword());
         String matKhauMoi = String.valueOf(txtMatKhauMoi.getPassword());
         String xacNhanMK = String.valueOf(txtXacNhanMK.getPassword());
         String matKhauMoiMD5 = MD5.getMd5(matKhauMoi);
         String MKHTMD5 = MD5.getMd5(MKHT);
-        if(!maNV.equalsIgnoreCase(Auth.user.getMaNV())){
+        if (!maNV.equalsIgnoreCase(Auth.user.getMaNV())) {
             MsgBox.alert(this, "Sai tên đăng nhập!");
-        }else if(!MKHTMD5.equalsIgnoreCase(Auth.user.getMatKhau())){
+        } else if (!MKHTMD5.equalsIgnoreCase(Auth.user.getMatKhau())) {
             MsgBox.alert(this, "Sai mật khẩu!");
-        }else if(!matKhauMoi.equalsIgnoreCase(xacNhanMK)){
+        } else if (!matKhauMoi.equalsIgnoreCase(xacNhanMK)) {
             MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
-        }else{
+        } else {
             Auth.user.setMatKhau(matKhauMoiMD5);
             dao.update(Auth.user);
             MsgBox.alert(this, "Đổi mật khẩu thành công");
         }
     }
-    
-    
+
 }

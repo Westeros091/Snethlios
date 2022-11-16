@@ -4,6 +4,7 @@
  */
 package form;
 
+import com.snethlios.utils.XImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -145,6 +146,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
 
     private void init(){
         setLocationRelativeTo(null);
+        this.setIconImage(XImage.getApImage());
         new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

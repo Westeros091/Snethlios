@@ -22,7 +22,12 @@ public class NhanVienDAO extends SnethliosDAO<NhanVien, String> {
 
     @Override
     public void insert(NhanVien entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       String sql = "INSERT INTO NhanVien (MANV, HOTEN, VAITRO, NHIEMVU, MATKHAU, EMAIL, HINH) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try {
+            JdbcHelper.update(sql, entity.getMaNV(), entity.getHoTen(), entity.getVaiTro(), entity.getNhiemVu(), MD5.getMd5(entity.getMatKhau()), entity.getEmail(), entity.getHinh());
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -82,7 +87,7 @@ public class NhanVienDAO extends SnethliosDAO<NhanVien, String> {
         nv.setMaNV(rs.getString("MANV"));
         nv.setHoTen(rs.getString("HOTEN"));
         nv.setVaiTro(rs.getBoolean("VAITRO"));
-        nv.setEmail(rs.getString("NHIEMVU"));
+        nv.setNhiemVu(rs.getString("NHIEMVU"));
         nv.setMatKhau(rs.getString("MATKHAU"));
         nv.setEmail(rs.getString("EMAIL"));
         nv.setHinh(rs.getString("HINH"));

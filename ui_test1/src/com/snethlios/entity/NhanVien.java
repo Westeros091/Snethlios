@@ -85,4 +85,6 @@ public class NhanVien {
     public void setHinh(String hinh) {
         this.hinh = hinh;
     }
+
+    
 }
