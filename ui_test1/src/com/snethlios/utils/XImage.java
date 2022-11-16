@@ -21,13 +21,13 @@ import javax.swing.ImageIcon;
 public class XImage {
     
     public static final Image getApImage() {
-        URL url = XImage.class.getResource("/com/snethlios/icon/logo.jpg");
+        URL url = XImage.class.getResource("/icon/logo.jpg");
         return new ImageIcon(url).getImage();
     }
     public static final Image APP_ICON;
 
     static {
-        String file = "/com/snethlios/icon/logo.jpg";
+        String file = "/icon/logo.jpg";
         APP_ICON = new ImageIcon(XImage.class.getResource(file)).getImage();
     }
 
