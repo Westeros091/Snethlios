@@ -1,6 +1,8 @@
 package form;
 
+import chart.ModelChart;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import model.Model_Card;
 
@@ -12,6 +14,19 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/profit.png")), "Tổng doanh thu/ngày", "$15000", "Increased by 25%"));
         card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/flag.png")), "Tổng doanh thu/tháng", "$300000", "Increased by 70%"));
         card4.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/flag.png")), "Tổng doanh thu/năm", "$9300000", "Increased by 50%"));
+        
+        //tieu de chart
+        chart.addLegend("Income", new Color(245, 189, 135));
+        chart.addLegend("Expense", new Color(135, 189, 245));
+        chart.addLegend("Profit", new Color(189, 135, 245));
+        chart.addLegend("Cost", new Color(139, 229, 222));
+        //data chart
+        chart.addData(new ModelChart("January", new double[]{800, 200, 80,89}));
+        chart.addData(new ModelChart("February", new double[]{600, 750, 90,150}));
+        chart.addData(new ModelChart("March", new double[]{200, 350, 460,900}));
+        chart.addData(new ModelChart("April", new double[]{480, 150, 750,700}));
+        chart.addData(new ModelChart("May", new double[]{350, 540, 300,150}));
+        chart.addData(new ModelChart("June", new double[]{190, 280, 81,200}));
     }
 
     @SuppressWarnings("unchecked")
@@ -25,23 +40,24 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         card3 = new component.CardJPanel();
         card4 = new component.CardJPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        pnlDoanhThu = new javax.swing.JPanel();
         pnlCard = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
         jLabel51 = new javax.swing.JLabel();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTable8 = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
-        jButton33 = new javax.swing.JButton();
-        jButton34 = new javax.swing.JButton();
+        chart = new chart.ChartJPanel();
         Năm = new javax.swing.JLabel();
         jComboBox10 = new javax.swing.JComboBox<>();
         Năm1 = new javax.swing.JLabel();
         ThongKe_rdoBang = new javax.swing.JRadioButton();
         ThongKe_rdoBieuDo = new javax.swing.JRadioButton();
         jButton19 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        pnlSanPham = new javax.swing.JPanel();
+        jLabel52 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTable9 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(247, 247, 247));
 
@@ -64,13 +80,13 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         card4.setColor2(new java.awt.Color(36, 11, 53));
         jPanel1.add(card4);
 
-        jPanel2.setOpaque(false);
+        pnlDoanhThu.setOpaque(false);
 
         pnlCard.setLayout(new java.awt.CardLayout());
 
         jPanel35.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel35.setOpaque(false);
 
+        jLabel51.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel51.setText("CHI TIẾT DOANH THU");
 
         jTable8.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,7 +112,7 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addGap(304, 304, 304))
             .addGroup(jPanel35Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel35Layout.setVerticalGroup(
@@ -104,39 +120,34 @@ public class ThongKeJPanel extends javax.swing.JPanel {
             .addGroup(jPanel35Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel51)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnlCard.add(jPanel35, "card3");
 
-        jButton33.setText("jButton33");
-
-        jButton34.setText("jButton34");
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(365, 365, 365)
-                        .addComponent(jButton33))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(575, 575, 575)
-                        .addComponent(jButton34)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jButton34)
-                .addGap(92, 92, 92)
-                .addComponent(jButton33)
-                .addContainerGap(163, Short.MAX_VALUE))
+            .addGap(0, 385, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(chart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pnlCard.add(jPanel7, "card2");
@@ -166,31 +177,31 @@ public class ThongKeJPanel extends javax.swing.JPanel {
 
         jButton19.setText("Xuất file excel");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDoanhThuLayout = new javax.swing.GroupLayout(pnlDoanhThu);
+        pnlDoanhThu.setLayout(pnlDoanhThuLayout);
+        pnlDoanhThuLayout.setHorizontalGroup(
+            pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Năm)
                     .addComponent(jComboBox10, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Năm1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                         .addComponent(ThongKe_rdoBang)
                         .addGap(18, 18, 18)
                         .addComponent(ThongKe_rdoBieuDo))
                     .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(764, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(776, Short.MAX_VALUE))
+            .addGroup(pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                     .addGap(242, 242, 242)
                     .addComponent(pnlCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlDoanhThuLayout.setVerticalGroup(
+            pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(Năm)
                 .addGap(18, 18, 18)
@@ -198,35 +209,62 @@ public class ThongKeJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(Năm1)
                 .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ThongKe_rdoBang)
                     .addComponent(ThongKe_rdoBieuDo))
                 .addGap(40, 40, 40)
                 .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(103, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(115, Short.MAX_VALUE))
+            .addGroup(pnlDoanhThuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlDoanhThuLayout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(pnlCard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jTabbedPane1.addTab("Doanh thu", jPanel2);
+        jTabbedPane1.addTab("Doanh thu", pnlDoanhThu);
 
-        jPanel3.setOpaque(false);
+        pnlSanPham.setOpaque(false);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 986, Short.MAX_VALUE)
+        jLabel52.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel52.setText("CHI TIẾT SẢN PHẨM");
+
+        jTable9.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Mã SP", "Tên SP", "Số lượng đã bán", "Số lượng còn lại"
+            }
+        ));
+        jScrollPane13.setViewportView(jTable9);
+
+        javax.swing.GroupLayout pnlSanPhamLayout = new javax.swing.GroupLayout(pnlSanPham);
+        pnlSanPham.setLayout(pnlSanPhamLayout);
+        pnlSanPhamLayout.setHorizontalGroup(
+            pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSanPhamLayout.createSequentialGroup()
+                .addGap(401, 401, 401)
+                .addComponent(jLabel52)
+                .addContainerGap(451, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSanPhamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane13)
+                .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+        pnlSanPhamLayout.setVerticalGroup(
+            pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSanPhamLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Sản phẩm", jPanel3);
-        jTabbedPane1.addTab("Thẻ thành viên", jTabbedPane2);
+        jTabbedPane1.addTab("Sản phẩm", pnlSanPham);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -252,17 +290,17 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ThongKe_rdoBangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThongKe_rdoBangActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout) pnlCard.getLayout();
-        layout.first(pnlCard);
-    }//GEN-LAST:event_ThongKe_rdoBangActionPerformed
-
     private void ThongKe_rdoBieuDoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThongKe_rdoBieuDoActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) pnlCard.getLayout();
         layout.last(pnlCard);
     }//GEN-LAST:event_ThongKe_rdoBieuDoActionPerformed
+
+    private void ThongKe_rdoBangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThongKe_rdoBangActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) pnlCard.getLayout();
+        layout.first(pnlCard);
+    }//GEN-LAST:event_ThongKe_rdoBangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -275,20 +313,21 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     private component.CardJPanel card2;
     private component.CardJPanel card3;
     private component.CardJPanel card4;
+    private chart.ChartJPanel chart;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton33;
-    private javax.swing.JButton jButton34;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable8;
+    private javax.swing.JTable jTable9;
     private javax.swing.JPanel pnlCard;
+    private javax.swing.JPanel pnlDoanhThu;
+    private javax.swing.JPanel pnlSanPham;
     // End of variables declaration//GEN-END:variables
 }
