@@ -4,18 +4,20 @@
  */
 package main;
 
+import com.snethlios.utils.XImage;
 import event.EventMenuSelected;
+import form.ChaoJDialog;
+import form.DangNhapJDialog;
+import form.DoiMKJPanel;
 import form.Form_1;
 import form.Form_2;
 import form.Form_3;
 import form.NewJPanel;
+import form.NhanVienJPanel;
 import form.SanPhamJPanel;
 import form.ThongKeJPanel;
 import form.TrangChuJPanel;
-import java.awt.Color;
-import java.awt.Scrollbar;
 import javax.swing.JComponent;
-import swing.ScrollBar;
 
 /**
  *
@@ -33,6 +35,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private NewJPanel test;
     private TrangChuJPanel trangChu;
     private SanPhamJPanel sanPham;
+    private NhanVienJPanel nhanVien;
+    private DoiMKJPanel doiMK;
     
     public MainJFrame() {
         initComponents();
@@ -46,6 +50,8 @@ public class MainJFrame extends javax.swing.JFrame {
         thongKe = new ThongKeJPanel();
         test = new NewJPanel();
         sanPham = new SanPhamJPanel();
+        nhanVien = new NhanVienJPanel();
+        doiMK = new DoiMKJPanel();
         
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -63,11 +69,18 @@ public class MainJFrame extends javax.swing.JFrame {
 //                    setForm(kh);
                 }else if (index == 5) {
                     setForm(thongKe);
+                }else if(index == 6){
+                    
+                }else if(index == 7){
+                    setForm(nhanVien);
+                }else if(index == 8){
+                    setForm(doiMK);
                 }
             }
         });
         //  set when system open start with home form
         setForm(new TrangChuJPanel());
+        init();
     }
     private void setForm(JComponent com) {
         mainPanel.removeAll();
@@ -166,4 +179,11 @@ public class MainJFrame extends javax.swing.JFrame {
     private component.MenuJPanel menu;
     private swing.PanelBorderJPanel panelBorderJPanel1;
     // End of variables declaration//GEN-END:variables
+
+    void init(){
+        new ChaoJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
+        this.setIconImage(XImage.getApImage());
+    }
+
 }
