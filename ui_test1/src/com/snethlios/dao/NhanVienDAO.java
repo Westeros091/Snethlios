@@ -6,6 +6,7 @@ package com.snethlios.dao;
 
 import com.snethlios.entity.NhanVien;
 import com.snethlios.utils.JdbcHelper;
+import com.snethlios.utils.MD5;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,7 +27,12 @@ public class NhanVienDAO extends SnethliosDAO<NhanVien, String> {
 
     @Override
     public void update(NhanVien entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE NhanVien SET HOTEN=?, VAITRO=?, NHIEMVU=?, MATKHAU=?, EMAIL=?, HINH = ? WHERE MANV = ?";
+        try {
+            JdbcHelper.update(sql, entity.getHoTen(), entity.getVaiTro(), entity.getNhiemVu(), MD5.getMd5(entity.getMatKhau()), entity.getEmail(), entity.getHinh(), entity.getMaNV());
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -47,7 +53,7 @@ public class NhanVienDAO extends SnethliosDAO<NhanVien, String> {
 
     @Override
     public NhanVien selectByID(String MaNV) {
-        String sql = "SELECT * FROM NhanVien WHERE MaNV=?";
+        String sql = "SELECT * FROM NHANVIEN WHERE MANV=?";
         List<NhanVien> list = selectBySQL(sql, MaNV);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -74,15 +80,12 @@ public class NhanVienDAO extends SnethliosDAO<NhanVien, String> {
     private NhanVien readFromResultSet(ResultSet rs) throws SQLException {
         NhanVien nv = new NhanVien();
         nv.setMaNV(rs.getString("MANV"));
-        nv.setTenNV(rs.getString("TENNV"));
+        nv.setHoTen(rs.getString("HOTEN"));
+        nv.setVaiTro(rs.getBoolean("VAITRO"));
+        nv.setEmail(rs.getString("NHIEMVU"));
         nv.setMatKhau(rs.getString("MATKHAU"));
-        nv.setVaiTro(rs.getBoolean("VaiTro"));
         nv.setEmail(rs.getString("EMAIL"));
-        nv.setDiaChi(rs.getString("DIACHI"));
-        nv.setSDT(rs.getString("SDT"));
-        nv.setCCCD(rs.getString("CCCD"));
         nv.setHinh(rs.getString("HINH"));
         return nv;
     }
-
 }

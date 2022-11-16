@@ -5,6 +5,8 @@
 package main;
 
 import event.EventMenuSelected;
+import form.ChaoJDialog;
+import form.DangNhapJDialog;
 import form.Form_1;
 import form.Form_2;
 import form.Form_3;
@@ -68,6 +70,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         //  set when system open start with home form
         setForm(new TrangChuJPanel());
+        init();
     }
     private void setForm(JComponent com) {
         mainPanel.removeAll();
@@ -166,4 +169,10 @@ public class MainJFrame extends javax.swing.JFrame {
     private component.MenuJPanel menu;
     private swing.PanelBorderJPanel panelBorderJPanel1;
     // End of variables declaration//GEN-END:variables
+
+    void init(){
+        new ChaoJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
+    }
+
 }

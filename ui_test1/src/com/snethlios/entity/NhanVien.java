@@ -10,27 +10,23 @@ package com.snethlios.entity;
  */
 public class NhanVien {
     private String maNV;
-    private String tenNV;
-    private String matKhau;
+    private String hoTen;
     private boolean vaiTro;
+    private String nhiemVu;
+    private String matKhau;
     private String email;
-    private String diaChi;
-    private String SDT;
-    private String CCCD;
     private String hinh;
 
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String tenNV, String matKhau, boolean vaiTro, String email, String diaChi, String SDT, String CCCD, String hinh) {
+    public NhanVien(String maNV, String hoTen, boolean vaiTro, String nhiemVu, String matKhau, String email, String hinh) {
         this.maNV = maNV;
-        this.tenNV = tenNV;
-        this.matKhau = matKhau;
+        this.hoTen = hoTen;
         this.vaiTro = vaiTro;
+        this.nhiemVu = nhiemVu;
+        this.matKhau = matKhau;
         this.email = email;
-        this.diaChi = diaChi;
-        this.SDT = SDT;
-        this.CCCD = CCCD;
         this.hinh = hinh;
     }
 
@@ -42,20 +38,12 @@ public class NhanVien {
         this.maNV = maNV;
     }
 
-    public String getTenNV() {
-        return tenNV;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public void setTenNV(String tenNV) {
-        this.tenNV = tenNV;
-    }
-
-    public String getMatKhau() {
-        return matKhau;
-    }
-
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
     public boolean getVaiTro() {
@@ -66,36 +54,28 @@ public class NhanVien {
         this.vaiTro = vaiTro;
     }
 
+    public String getNhiemVu() {
+        return nhiemVu;
+    }
+
+    public void setNhiemVu(String nhiemVu) {
+        this.nhiemVu = nhiemVu;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
+    }
+
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
-    }
-
-    public String getSDT() {
-        return SDT;
-    }
-
-    public void setSDT(String SDT) {
-        this.SDT = SDT;
-    }
-
-    public String getCCCD() {
-        return CCCD;
-    }
-
-    public void setCCCD(String CCCD) {
-        this.CCCD = CCCD;
     }
 
     public String getHinh() {
@@ -105,6 +85,4 @@ public class NhanVien {
     public void setHinh(String hinh) {
         this.hinh = hinh;
     }
-
-    
 }
