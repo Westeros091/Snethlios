@@ -3,23 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/form/DoiMKJPanel.java</file>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/form/ChaoJDialog.java</file>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/main/MainJFrame.java</file>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/form/BanHangJPanel.java</file>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/form/NhanVienJPanel.java</file>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/com/snethlios/dao/NhanVienDAO.java</file>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/com/snethlios/utils/XImage.java</file>
-            <file>file:/C:/Users/HUYNH%20DUC%20HOAN/Snethlios/ui_test1/src/form/DangNhapJDialog.java</file>
-            <file>file:/D:/Snethlios/ui_test1/src/chart/ChartJPanel.java</file>
-            <file>file:/D:/Snethlios/ui_test1/src/main/MainJFrame.java</file>
-            <file>file:/D:/Snethlios/ui_test1/src/chart/LegendItemJPanel.java</file>
-            <file>file:/D:/Snethlios/ui_test1/src/form/ThongKeJPanel.java</file>
-            <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/com/snethlios/dao/SanPhamDao.java</file>
             <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/main/MainJFrame.java</file>
-            <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/com/snethlios/dao/NhanVienDAO.java</file>
+            <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/com/snethlios/dao/GioHangDao.java</file>
+            <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/com/snethlios/utils/JdbcHelper.java</file>
             <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/form/SanPhamJPanel.java</file>
-            <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/form/NhanVienJPanel.java</file>
+            <file>file:/C:/Users/ASUS/Snethlios/ui_test1/src/form/BanHangJPanel.java</file>
         </group>
     </open-files>
 </project-private>

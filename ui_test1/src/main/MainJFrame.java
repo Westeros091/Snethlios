@@ -6,11 +6,12 @@ package main;
 
 import com.snethlios.utils.XImage;
 import event.EventMenuSelected;
+import form.BanHangJPanel;
 import form.ChaoJDialog;
 import form.DangNhapJDialog;
 import form.DoiMKJPanel;
 import form.Form_1;
-import form.Form_2;
+import form.Form_2; 
 import form.Form_3;
 import form.NewJPanel;
 import form.NhanVienJPanel;
@@ -35,6 +36,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private NewJPanel test;
     private TrangChuJPanel trangChu;
     private SanPhamJPanel sanPham;
+    private BanHangJPanel banHang;
     private NhanVienJPanel nhanVien;
     private DoiMKJPanel doiMK;
     
@@ -49,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
         form3 = new Form_3();
         thongKe = new ThongKeJPanel();
         test = new NewJPanel();
+        banHang = new BanHangJPanel();
         sanPham = new SanPhamJPanel();
         nhanVien = new NhanVienJPanel();
         doiMK = new DoiMKJPanel();
@@ -60,7 +63,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 if (index == 0) {
                     setForm(trangChu);
                 } else if (index == 1) {
-                    setForm(sanPham);
+                    setForm(banHang);
                 } else if (index == 2) {
                     setForm(sanPham);
                 } else if (index == 3) {
