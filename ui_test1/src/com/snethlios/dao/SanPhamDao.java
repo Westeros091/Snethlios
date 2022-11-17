@@ -7,10 +7,13 @@ package com.snethlios.dao;
 
 import com.snethlios.entity.SanPham;
 import com.snethlios.utils.JdbcHelper;
+import com.snethlios.utils.MD5;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,25 +21,39 @@ import java.util.List;
  */
 public class SanPhamDao extends SnethliosDAO<SanPham, String> {
 
-    String insert = "INSERT INTO NhanVien (MaNV, MatKhau, HoTen, VaiTro) VALUES (?, ?, ?, ?)";
-    String update = "UPDATE NhanVien SET MatKhau=?, HoTen=?, VaiTro=? WHERE MaNV=?";
-    String delete = "DELETE FROM NhanVien WHERE MaNV=?";
+    String insert = "insert into SANPHAM (MASP,TENSP,LOAI,DONGIA,SOLUONG,MAUSAC,KICHTHUOC,HANG,HINH,NgayNhap,MANV) values(?,?,?,?,?,?,?,?,?,?,?);";
+    String update = "UPDATE SANPHAm SET TENSP=?, LOAI=?, DONGIA=?, SOLUONG=?, MAUSAC=?, KICHTHUOC=?, HANG=?, HINH=?, NGAYNHAP=?, MANV=? WHERE MASP=?";
+    String delete = "DELETE FROM SANPHAM WHERE MASP=?";
     String selectAll = "SELECT * FROM NhanVien";
     String selectByID = "SELECT * FROM NhanVien WHERE TenNV=?";
 
     @Override
     public void insert(SanPham entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            JdbcHelper.update(insert, entity.getMaSp(), entity.getTenSp(), entity.getLoai(), entity.getDonGia(), entity.getSoLuong(), entity.getMau(), entity.getKichThuoc(), entity.getHang(), entity.getHinh(), entity.getNgayNhap(), entity.getMaNV());
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void update(SanPham entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            JdbcHelper.update(update,entity.getTenSp(), entity.getLoai(), entity.getDonGia(), entity.getSoLuong(), entity.getMau(), entity.getKichThuoc(), entity.getHang(), entity.getHinh(), entity.getNgayNhap(), entity.getMaNV(),entity.getMaSp());
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
     public void delete(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            JdbcHelper.update(delete, key);
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
@@ -76,7 +93,7 @@ public class SanPhamDao extends SnethliosDAO<SanPham, String> {
     }
 
     private SanPham readFromResultSet(ResultSet rs) throws SQLException {
-         SanPham model = new SanPham();
+        SanPham model = new SanPham();
         model.setMaSp(rs.getString("MASP"));
         model.setTenSp(rs.getString("TENSP"));
         model.setLoai(rs.getString("LOAI"));
