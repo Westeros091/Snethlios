@@ -12,6 +12,7 @@ import form.DoiMKJPanel;
 import form.Form_1;
 import form.Form_2;
 import form.Form_3;
+import form.KhachHangJPanel;
 import form.NewJPanel;
 import form.NhanVienJPanel;
 import form.SanPhamJPanel;
@@ -36,23 +37,25 @@ public class MainJFrame extends javax.swing.JFrame {
     private TrangChuJPanel trangChu;
     private SanPhamJPanel sanPham;
     private NhanVienJPanel nhanVien;
+    private KhachHangJPanel khachHang;
     private DoiMKJPanel doiMK;
-    
+
     public MainJFrame() {
         initComponents();
 //        setBackground(new Color(0, 0, 0, 0));
 //        menuJPanel1.initMoving(this);
 //        sp.setVerticalScrollBar(new ScrollBar());
-        trangChu =  new TrangChuJPanel();
-        form1 =  new Form_1();
+        trangChu = new TrangChuJPanel();
+        form1 = new Form_1();
         form2 = new Form_2();
         form3 = new Form_3();
         thongKe = new ThongKeJPanel();
         test = new NewJPanel();
         sanPham = new SanPhamJPanel();
         nhanVien = new NhanVienJPanel();
+        khachHang = new KhachHangJPanel();
         doiMK = new DoiMKJPanel();
-        
+
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
@@ -67,13 +70,13 @@ public class MainJFrame extends javax.swing.JFrame {
                     setForm(test);
                 } else if (index == 4) {
 //                    setForm(kh);
-                }else if (index == 5) {
+                } else if (index == 5) {
                     setForm(thongKe);
-                }else if(index == 6){
-                    
-                }else if(index == 7){
+                } else if (index == 6) {
+                    setForm(khachHang);
+                } else if (index == 7) {
                     setForm(nhanVien);
-                }else if(index == 8){
+                } else if (index == 8) {
                     setForm(doiMK);
                 }
             }
@@ -82,6 +85,7 @@ public class MainJFrame extends javax.swing.JFrame {
         setForm(new TrangChuJPanel());
         init();
     }
+
     private void setForm(JComponent com) {
         mainPanel.removeAll();
         mainPanel.add(com);
@@ -180,7 +184,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private swing.PanelBorderJPanel panelBorderJPanel1;
     // End of variables declaration//GEN-END:variables
 
-    void init(){
+    void init() {
         new ChaoJDialog(this, true).setVisible(true);
         new DangNhapJDialog(this, true).setVisible(true);
         this.setIconImage(XImage.getApImage());
