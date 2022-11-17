@@ -5,9 +5,9 @@
  */
 package com.snethlios.dao;
 
+import com.snethlios.entity.GioHang;
 import com.snethlios.entity.SanPham;
 import com.snethlios.utils.JdbcHelper;
-import com.snethlios.utils.MD5;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,27 +19,27 @@ import java.util.logging.Logger;
  *
  * @author ASUS
  */
-public class SanPhamDao extends SnethliosDAO<SanPham, String> {
+public class GioHangDao extends SnethliosDAO<GioHang, String> {
 
-    String insert = "insert into SANPHAM (MASP,TENSP,LOAI,DONGIA,SOLUONG,MAUSAC,KICHTHUOC,HANG,HINH,NgayNhap,MANV) values(?,?,?,?,?,?,?,?,?,?,?);";
-    String update = "UPDATE SANPHAm SET TENSP=?, LOAI=?, DONGIA=?, SOLUONG=?, MAUSAC=?, KICHTHUOC=?, HANG=?, HINH=?, NGAYNHAP=?, MANV=? WHERE MASP=?";
-    String delete = "DELETE FROM SANPHAM WHERE MASP=?";
-    String selectAll = "SELECT * FROM SANPHAM";
-    String selectByID = "SELECT * FROM SANPHAM WHERE MASP=?";
+    String insert = "insert into GIOHANG (MASP,TENSP,LOAI,DONGIA,SOLUONG,MAUSAC,KICHTHUOC,HANG,HINH) values(?,?,?,?,?,?,?,?,?);";
+    String update = "UPDATE GIOHANG SET TENSP=?, LOAI=?, DONGIA=?, SOLUONG=?, MAUSAC=?, KICHTHUOC=?, HANG=?, HINH=? WHERE MASP=?";
+    String delete = "DELETE FROM GIOHANG WHERE MASP=?";
+    String selectAll = "SELECT * FROM GIOHANG";
+    String selectByID = "SELECT * FROM GIOHANG WHERE MASP=?";
 
     @Override
-    public void insert(SanPham entity) {
+    public void insert(GioHang entity) {
         try {
-            JdbcHelper.update(insert, entity.getMaSp(), entity.getTenSp(), entity.getLoai(), entity.getDonGia(), entity.getSoLuong(), entity.getMau(), entity.getKichThuoc(), entity.getHang(), entity.getHinh(), entity.getNgayNhap(), entity.getMaNV());
+            JdbcHelper.update(insert, entity.getMaSp(), entity.getTenSp(), entity.getLoai(), entity.getDonGia(), entity.getSoLuong(), entity.getMau(), entity.getKichThuoc(), entity.getHang(), entity.getHinh());
         } catch (SQLException ex) {
-            Logger.getLogger(SanPhamDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GioHang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void update(SanPham entity) {
+    public void update(GioHang entity) {
         try {
-            JdbcHelper.update(update,entity.getTenSp(), entity.getLoai(), entity.getDonGia(), entity.getSoLuong(), entity.getMau(), entity.getKichThuoc(), entity.getHang(), entity.getHinh(), entity.getNgayNhap(), entity.getMaNV(),entity.getMaSp());
+            JdbcHelper.update(update, entity.getTenSp(), entity.getLoai(), entity.getDonGia(), entity.getSoLuong(), entity.getMau(), entity.getKichThuoc(), entity.getHang(), entity.getHinh(), entity.getMaSp());
         } catch (SQLException ex) {
             Logger.getLogger(SanPhamDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,15 +57,13 @@ public class SanPhamDao extends SnethliosDAO<SanPham, String> {
     }
 
     @Override
-    public List<SanPham> selectAll() {
-        String sql = "select * from SanPham";
-        return this.selectBySQL(sql);
+    public List<GioHang> selectAll() {
+        return this.selectBySQL(selectAll);
     }
 
     @Override
-    public SanPham selectByID(String key) {
-        String sql = "select * from SanPham where MASP=?";
-        List<SanPham> list = selectBySQL(sql, key);
+    public GioHang selectByID(String key) {
+        List<GioHang> list = selectBySQL(selectByID, key);
         if (list.isEmpty()) {
             return null;
         }
@@ -73,14 +71,14 @@ public class SanPhamDao extends SnethliosDAO<SanPham, String> {
     }
 
     @Override
-    protected List<SanPham> selectBySQL(String sql, Object... args) {
-        List<SanPham> list = new ArrayList<>();
+    protected List<GioHang> selectBySQL(String sql, Object... args) {
+        List<GioHang> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelper.query(sql, args);
                 while (rs.next()) {
-                    SanPham model = readFromResultSet(rs);
+                    GioHang model = readFromResultSet(rs);
                     list.add(model);
                 }
             } finally {
@@ -92,8 +90,8 @@ public class SanPhamDao extends SnethliosDAO<SanPham, String> {
         return list;
     }
 
-    private SanPham readFromResultSet(ResultSet rs) throws SQLException {
-        SanPham model = new SanPham();
+    private GioHang readFromResultSet(ResultSet rs) throws SQLException {
+        GioHang model = new GioHang();
         model.setMaSp(rs.getString("MASP"));
         model.setTenSp(rs.getString("TENSP"));
         model.setLoai(rs.getString("LOAI"));
@@ -103,8 +101,7 @@ public class SanPhamDao extends SnethliosDAO<SanPham, String> {
         model.setKichThuoc(rs.getInt("KICHTHUOC"));
         model.setHang(rs.getString("HANG"));
         model.setHinh(rs.getString("HINH"));
-        model.setNgayNhap(rs.getDate("NgayNhap"));
-        model.setMaNV(rs.getString("MANV"));
+
         return model;
     }
 

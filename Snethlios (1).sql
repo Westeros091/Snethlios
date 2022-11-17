@@ -4,7 +4,7 @@ use master
 drop database SnethliosSneakers
 
 create database SnethliosSneakers
-
+go
 use SnethliosSneakers
 go
 --create nhanvien
@@ -21,22 +21,40 @@ go
 
 
 --create table SANPHAM
+use SnethliosSneakers
 create table SANPHAM
 (
 	MASP varchar(20) primary key,
 	TENSP nvarchar(50) not null,
-	KICHTHUOC int not null,
 	LOAI nvarchar(50) not null,
-	HANG nvarchar(40) not null,
-	MAUSAC nvarchar(15) not null,
-	SOLUONG int not null,
-	NGAYNHAP date,
 	DONGIA float not null,
+	SOLUONG int not null,
+	MAUSAC nvarchar(15) not null,
+	KICHTHUOC int not null,
+	HANG nvarchar(40) not null,
 	HINH varchar(50) not null,
+	NGAYNHAP date,
 	MANV varchar(50) references NHANVIEN(MANV)
 )
 go
 
+insert into SANPHAM values('AF11999','Giay Air force 1','Giay Sneakers',950000,2,'White',39,'Nike','nike.jpg','2022-11-17','HoanHD');
+use SnethliosSneakers
+CREATE TABLE GIOHANG(
+	MASP varchar(20) primary key,
+	TENSP nvarchar(50) not null,
+	LOAI nvarchar(50) not null,
+	DONGIA float not null,
+	SOLUONG int not null,
+	MAUSAC nvarchar(15) not null,
+	KICHTHUOC int not null,
+	HANG nvarchar(40) not null,
+	HINH varchar(50) not null
+)
+
+se SneuthliosSneakers
+select * from GIOHANG
+insert into GIOHANG values('AF11999','Giay Air force 1','Giay Sneakers',950000,2,'White',39,'Nike','nike.jpg');
 
 create table KHACHHANG
 (
@@ -91,7 +109,7 @@ insert into NhanVien values('HaiNV', N'Nguyễn Văn Hải', 0, 'Nhân viên', C
 insert into NhanVien values('ThaiNA', N'Nguyễn Anh Thái', 0, 'Nhân viên', CONVERT(varchar(32), HashBytes('MD5', 'thaianhnguyen'), 2), 'thaina@gmail.com', 'hinh2.png')
 
 --insert sanpham
-insert into SANPHAM values('AF11999',  N'Giày Air force 1', 39, N'Giày Sneakers', 'Nike', 'White', 2, '2022-11-17', 100000, 'nike.jpg', 'TeoNV')
+
 insert into Sanpham values ('AD1', N'Giày Adidas', 39, N'Giày thể thao', 'Adidas', N'Đen', 20, '2022-6-17', 900000, 'adidas.jpg', 'TeoNV' )
 insert into SanPham values ('NK1', N'Giày Nike', 41, N'Giày thể thao','Nike',N'Trắng', 10, '2022-3-17', 400000, 'adidas.jpg', 'HoanHD' )
 insert into SanPham values ('PM1', N'Giày Puma', 40, N'Giày lười', 'Puma', N'Trắng', 30, '2021-6-17', 600000, 'adidas.jpg', 'HaiNV' )
@@ -126,7 +144,7 @@ insert into ThanhVien values('TV04',30,'2022-10-11','2023-10-11','KH002')
 
 
 select * from nhanvien
-select * from SANPHAm
+select * from SANPHAM
 select * from KhachHang
 select * from PhieuXuat
 select * from CTPX

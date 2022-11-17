@@ -9,6 +9,7 @@ import com.snethlios.entity.NhanVien;
 import com.snethlios.utils.Auth;
 import com.snethlios.utils.MsgBox;
 import com.snethlios.utils.XImage;
+import java.awt.Image;
 import java.io.File;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -97,6 +98,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
 
         lblAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAnh.setText("Ảnh NV  150, 181 px");
+        lblAnh.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAnhMouseClicked(evt);
@@ -111,8 +113,18 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         });
 
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnMoi.setText("Mới");
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -142,13 +154,13 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                                     .addComponent(btnThem))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pnlNhanVienLayout.createSequentialGroup()
                                         .addComponent(btnSua)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnXoa)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnMoi))))
+                                        .addComponent(btnMoi))
+                                    .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(lblMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,11 +217,9 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                             .addComponent(btnSua)
                             .addComponent(btnThem)
                             .addComponent(btnXoa)
-                            .addComponent(btnMoi))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(pnlNhanVienLayout.createSequentialGroup()
-                        .addComponent(lblHinh)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnMoi)))
+                    .addComponent(lblHinh))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlBangNhanVien.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Danh sách nhân  viên", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12))); // NOI18N
@@ -311,6 +321,16 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMoi;
@@ -402,36 +422,36 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     }
 
     void insert() {
-            NhanVien nv = getForm();
-            String mk2 = String.valueOf(txtXacNhanMK.getPassword());
-            if (!mk2.equals(nv.getMatKhau())) {
-                MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
-            } else {
-                try {
-                    dao.insert(nv);
-                    this.fillToTable();
-                    this.clear();
-                    MsgBox.alert(this, "Thêm mới thành công");
-                } catch (Exception e) {
-                    MsgBox.alert(this, "Thêm mới thất bại!");
-                }
+        NhanVien nv = getForm();
+        String mk2 = String.valueOf(txtXacNhanMK.getPassword());
+        if (!mk2.equals(nv.getMatKhau())) {
+            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
+        } else {
+            try {
+                dao.insert(nv);
+                this.fillToTable();
+                this.clear();
+                MsgBox.alert(this, "Thêm mới thành công");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Thêm mới thất bại!");
             }
+        }
     }
 
     void update() {
-            NhanVien nv = getForm();
-            String mk2 = new String(txtXacNhanMK.getPassword());
-            if (!mk2.equals(nv.getMatKhau())) {
-                MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
-            } else {
-                try {
-                    dao.update(nv);
-                    this.fillToTable();
-                    MsgBox.alert(this, "Cập nhật thành công!");
-                } catch (Exception e) {
-                    MsgBox.alert(this, "Cập nhật thất bại!");
-                }
+        NhanVien nv = getForm();
+        String mk2 = new String(txtXacNhanMK.getPassword());
+        if (!mk2.equals(nv.getMatKhau())) {
+            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
+        } else {
+            try {
+                dao.update(nv);
+                this.fillToTable();
+                MsgBox.alert(this, "Cập nhật thành công!");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cập nhật thất bại!");
             }
+        }
     }
 
     void delete() {
@@ -460,7 +480,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             XImage.save(file);// lưu vào thư mục logos
             ImageIcon icon = XImage.read(file.getName()); // đọc hinhftuwf logos
             lblAnh.setText("");
-            lblAnh.setIcon(icon);
+//            lblAnh.setIcon(icon);
+            lblAnh.setIcon(new ImageIcon(XImage.read(file.getName()).getImage().getScaledInstance(150, 181, Image.SCALE_SMOOTH)));
             lblAnh.setToolTipText(file.getName()); // giữ tên hình trong tooltip
         }
     }
