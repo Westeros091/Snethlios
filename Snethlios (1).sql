@@ -149,3 +149,32 @@ select * from KhachHang
 select * from PhieuXuat
 select * from CTPX
 select * from ThanhVien
+
+
+use SnethliosSneakers
+go
+--spDoanhThu
+create proc sp_doanhthu(@year int)
+as begin
+	select convert(int, MONTH(NGAYTAO)) as 'Thang',
+	 convert(int,sum(ct.SOLUONG)) as 'Tong so ban',
+	 convert(int, SUM(ct.SOLUONG*ct.GIABAN) ) as 'Tong gia ban'
+from PHIEUXUAT px 
+				inner join CTPX ct on px.SOPX = ct.SOPX
+				inner join SANPHAM sp on ct.MASP = sp.MASP
+where YEAR(NGAYTAO) = @year
+group by MONTH(NGAYTAO)
+end
+
+--spSanPham
+create proc sp_sanpham
+as begin
+	select sp.MASP as N'Ma SP',
+	 sp.TENSP as 'Ten SP',
+	 sum(ct.SOLUONG) as 'So luong da ban',
+	 SUM(sp.SOLUONG) as 'So luong con lai'
+from PHIEUXUAT px 
+				inner join CTPX ct on px.SOPX = ct.SOPX
+				inner join SANPHAM sp on ct.MASP = sp.MASP
+group by sp.TENSP, sp.MASP
+end

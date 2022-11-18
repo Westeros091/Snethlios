@@ -44,7 +44,8 @@ import javax.swing.table.DefaultTableModel;
  * @author HUYNH DUC HOAN
  */
 public class BanHangJPanel extends javax.swing.JPanel implements Runnable, ThreadFactory {
-    int index =-1;
+
+    int index = -1;
     private WebcamPanel panel = null;
     private Webcam webcam = null;
     private Executor executor = Executors.newSingleThreadExecutor(this);
@@ -141,13 +142,13 @@ public class BanHangJPanel extends javax.swing.JPanel implements Runnable, Threa
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã HĐ", "Tên NV", "Tên KH", "Trạng Thái", "Ngày Tạo"
+                "SOPX", "Ngày Tạo", "Lý Do Hủy", "Trạng Thái", "Hình Thức TT", "Tên NV", "Tên KH"
             }
         ));
         tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -266,6 +267,11 @@ public class BanHangJPanel extends javax.swing.JPanel implements Runnable, Threa
         );
 
         pnlWebCam.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 102, 102)));
+        pnlWebCam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlWebCamMouseClicked(evt);
+            }
+        });
         pnlWebCam.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tạo Hóa Đơn", javax.swing.border.TitledBorder.LEADING, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -718,11 +724,16 @@ public class BanHangJPanel extends javax.swing.JPanel implements Runnable, Threa
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount()==1){
+        if (evt.getClickCount() == 1) {
             index = tblHoaDon.getSelectedRow();
             this.edit();
         }
     }//GEN-LAST:event_tblHoaDonMouseClicked
+
+    private void pnlWebCamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlWebCamMouseClicked
+        // TODO add your handling code here:
+        initWebcam();
+    }//GEN-LAST:event_pnlWebCamMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -875,6 +886,8 @@ public class BanHangJPanel extends javax.swing.JPanel implements Runnable, Threa
     GioHangDao ghDAO = new GioHangDao();
 
     void gioHang() {
+        try {
+
             for (int row : tblSanPham.getSelectedRows()) {
                 GioHang gh = new GioHang();
                 SanPham sp = new SanPham();
@@ -890,14 +903,13 @@ public class BanHangJPanel extends javax.swing.JPanel implements Runnable, Threa
                 gh.setHinh((String) tblSanPham.getValueAt(row, 8));
                 ghDAO.insert(gh);
                 loadGioHang();
-//                MsgBox.alert(this, "Thêm mới thành công");
-//                }
-//            }catch (Exception e) {
-//                MsgBox.alert(this, "Thêm mới thất bại!");
-//            }
-        }
+                MsgBox.alert(this, "Thêm mới thành công");
             }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Thêm mới thất bại!");
+        }
 
+    }
 
     void loadGioHang() {
         DefaultTableModel model = (DefaultTableModel) tblGioHang.getModel();
@@ -937,7 +949,7 @@ public class BanHangJPanel extends javax.swing.JPanel implements Runnable, Threa
             }
         }
     }
-      PhieuXuatDAO pxDao = new PhieuXuatDAO();
+    PhieuXuatDAO pxDao = new PhieuXuatDAO();
 
     void loadTableHoaDon() {
         DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();

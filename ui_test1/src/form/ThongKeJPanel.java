@@ -5,34 +5,44 @@ import com.snethlios.dao.PhieuXuatDAO;
 import com.snethlios.dao.ThongKeDAO;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Model_Card;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ThongKeJPanel extends javax.swing.JPanel {
 //[998, 649]
+
     public ThongKeJPanel() {
         initComponents();
         card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/stock.png")), "Tổng khách hàng/ngày", "23", "Increased by 60%"));
         card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/profit.png")), "Tổng doanh thu/ngày", "$15000", "Increased by 25%"));
         card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/flag.png")), "Tổng doanh thu/tháng", "$300000", "Increased by 70%"));
         card4.setData(new Model_Card(new ImageIcon(getClass().getResource("/icon/flag.png")), "Tổng doanh thu/năm", "$9300000", "Increased by 50%"));
-        
+
         //tieu de chart
         chart.addLegend("Income", new Color(245, 189, 135));
         chart.addLegend("Expense", new Color(135, 189, 245));
         chart.addLegend("Profit", new Color(189, 135, 245));
         chart.addLegend("Cost", new Color(139, 229, 222));
         //data chart
-        chart.addData(new ModelChart("January", new double[]{800, 200, 80,89}));
-        chart.addData(new ModelChart("February", new double[]{600, 750, 90,150}));
-        chart.addData(new ModelChart("March", new double[]{200, 350, 460,900}));
-        chart.addData(new ModelChart("April", new double[]{480, 150, 750,700}));
-        chart.addData(new ModelChart("May", new double[]{350, 540, 300,150}));
-        chart.addData(new ModelChart("June", new double[]{190, 280, 81,200}));
+        chart.addData(new ModelChart("January", new double[]{800, 200, 80, 89}));
+        chart.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
+        chart.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
+        chart.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
+        chart.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
+        chart.addData(new ModelChart("June", new double[]{190, 280, 81, 200}));
         init();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -160,6 +170,12 @@ public class ThongKeJPanel extends javax.swing.JPanel {
 
         Năm.setText("Năm");
 
+        cboNam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboNamActionPerformed(evt);
+            }
+        });
+
         Năm1.setText("Lựa chọn hiển thị ");
 
         buttonGroup1.add(ThongKe_rdoBang);
@@ -180,6 +196,11 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         });
 
         jButton19.setText("Xuất file excel");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlDoanhThuLayout = new javax.swing.GroupLayout(pnlDoanhThu);
         pnlDoanhThu.setLayout(pnlDoanhThuLayout);
@@ -306,6 +327,16 @@ public class ThongKeJPanel extends javax.swing.JPanel {
         layout.first(pnlCard);
     }//GEN-LAST:event_ThongKe_rdoBangActionPerformed
 
+    private void cboNamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNamActionPerformed
+        // TODO add your handling code here:
+        fillTableDoanhThu();
+    }//GEN-LAST:event_cboNamActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        this.creatDoanhThuExcel();
+    }//GEN-LAST:event_jButton19ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Năm;
@@ -336,11 +367,14 @@ public class ThongKeJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
     ThongKeDAO dao = new ThongKeDAO();
     PhieuXuatDAO pxdao = new PhieuXuatDAO();
-    
+
     void init() {
         this.fillComboBoxNam();
-        
+        fillTableDoanhThu();
+        fillTableSanPham();
+
     }
+
     private void fillComboBoxNam() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboNam.getModel();
         model.removeAllElements();
@@ -349,26 +383,74 @@ public class ThongKeJPanel extends javax.swing.JPanel {
             model.addElement(year);
         }
     }
-//    private void fillTableDoanhThu() {
-//        DefaultTableModel model = (DefaultTableModel) tblDoanhThu.getModel();
-//        model.setRowCount(0);
-//        int nam = (Integer) cboNam.getSelectedItem();
-//        List<Object[]> list = dao.getDoanhThu(nam);
-//        for (Object[] row : list) {
-//            model.addRow(row);
-//        }
-//
-//    }
-    //    private void fillTableSanPham() {
-//        DefaultTableModel model = (DefaultTableModel) tblDoanhThu.getModel();
-//        model.setRowCount(0);
-//        int nam = (Integer) cboNam.getSelectedItem();
-//        List<Object[]> list = dao.getDoanhThu(nam);
-//        for (Object[] row : list) {
-//            model.addRow(row);
-//        }
-//
-//    }
-    
+
+    private void fillTableDoanhThu() {
+        DefaultTableModel model = (DefaultTableModel) tblDoanhThu.getModel();
+        model.setRowCount(0);
+        int nam = (Integer) cboNam.getSelectedItem();
+        List<Object[]> list = dao.getDoanhThu(nam);
+        for (Object[] row : list) {
+            model.addRow(row);
+        }
+
+    }
+
+    private void fillTableSanPham() {
+        DefaultTableModel model = (DefaultTableModel) tblSanPham.getModel();
+        model.setRowCount(0);
+        List<Object[]> list = dao.getSanPham();
+        for (Object[] row : list) {
+            model.addRow(row);
+        }
+
+    }
+
+    private void creatDoanhThuExcel() {
+        int nam = (Integer) cboNam.getSelectedItem();
+        List<Object[]> list = dao.getDoanhThu(nam);
+        try {
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("baocaoDT");
+            XSSFRow row = null;
+            Cell cell = null;
+
+            row = sheet.createRow(2);// xuống 2 dòng
+            row.setHeight((short) 500);
+            cell = row.createCell(0, CellType.STRING);
+            int year = (int) cboNam.getSelectedItem();
+            cell.setCellValue("Báo cáo doanh thu " + year);
+
+            row = sheet.createRow(3);// xuống 3 dòng
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("Tháng");
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("Tổng số bán");
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("Tổng giá bán");
+
+            int rowid = 4;
+            for (Object[] row1 : list) {
+                row = sheet.createRow(rowid++);
+                int cellid = 0;
+                for (Object obj : row1) {
+                    cell = row.createCell(cellid++);
+                    cell.setCellValue((int) obj);
+                }
+            }
+
+            File file = new File("C:\\Users\\ASUS\\Snethlios\\BaoCaoDoanhThu.xlsx");
+            try {
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "Xuất qua file excel thành công");
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi");
+        }
+    }
 
 }

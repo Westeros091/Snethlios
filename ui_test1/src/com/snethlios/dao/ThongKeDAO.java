@@ -54,5 +54,14 @@ public class ThongKeDAO {
 //        String[] cols = {"ChuyenDe", "SoKH", "SoHV", "DoanhThu", "ThapNhat", "CaoNhat", "TrungBinh"};
 //        return this.getListOfArray(sql, cols, year);
 //    }
-
+public List<Object[]> getDoanhThu (Integer year){
+        String sql = "{CALL sp_doanhthu(?)}";
+        String[] cols = {"thang", "Tong so ban", "Tong gia ban"};
+        return this.getListOfArray(sql, cols, year);
+    }
+    public List<Object[]> getSanPham (){
+        String sql = "{CALL sp_sanpham}";
+        String[] cols = {"Ma SP", "Ten SP", "So luong da ban", "So luong con lai"};
+        return this.getListOfArray(sql, cols);
+    }
 }

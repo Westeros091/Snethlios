@@ -70,7 +70,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         });
 
         btnSignUp.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        btnSignUp.setText("SignUp");
+        btnSignUp.setText("Exit");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignUpActionPerformed(evt);
@@ -211,6 +211,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**

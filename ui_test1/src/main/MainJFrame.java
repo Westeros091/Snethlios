@@ -4,6 +4,8 @@
  */
 package main;
 
+import com.snethlios.utils.Auth;
+import com.snethlios.utils.MsgBox;
 import com.snethlios.utils.XImage;
 import event.EventMenuSelected;
 import form.BanHangJPanel;
@@ -11,7 +13,7 @@ import form.ChaoJDialog;
 import form.DangNhapJDialog;
 import form.DoiMKJPanel;
 import form.Form_1;
-import form.Form_2; 
+import form.Form_2;
 import form.Form_3;
 import form.KhachHangJPanel;
 import form.NewJPanel;
@@ -81,6 +83,11 @@ public class MainJFrame extends javax.swing.JFrame {
                     setForm(nhanVien);
                 } else if (index == 8) {
                     setForm(doiMK);
+                } else if (index == 9) {
+                    if (MsgBox.confirm(test, "Bạn Có Muốn Kết Thúc?")) {
+                        dangXuat();
+                    }
+
                 }
             }
         });
@@ -193,4 +200,8 @@ public class MainJFrame extends javax.swing.JFrame {
         this.setIconImage(XImage.getApImage());
     }
 
+    void dangXuat() {
+        Auth.clear();
+        new DangNhapJDialog(this, true).setVisible(true);
+    }
 }
