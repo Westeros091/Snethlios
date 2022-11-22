@@ -28,7 +28,8 @@ public class ThanhVienDAO extends SnethliosDAO<ThanhVien, String>{
                     entity.getMatv(),
                     entity.getDiem(),
                     entity.getNgayDK(),
-                    entity.getNgayHH());
+                    entity.getNgayHH()
+            );
         } catch (SQLException ex) {
             Logger.getLogger(ThanhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -36,10 +37,9 @@ public class ThanhVienDAO extends SnethliosDAO<ThanhVien, String>{
 
     @Override
     public void update(ThanhVien entity) {
-        String sql="update ThanhVien set MATV=?,DIEM=?,NGAYTAO=?,NGAYHETHAN=? where MAKH=?";
-        try {
+        String sql="update ThanhVien set DIEM=?,NGAYTAO=?,NGAYHETHAN=? where MATV=?";
+        try { 
             JdbcHelper.update(sql,
-                    entity.getMatv(),
                     entity.getDiem(),
                     entity.getNgayDK(),
                     entity.getNgayHH(),
@@ -99,6 +99,21 @@ public class ThanhVienDAO extends SnethliosDAO<ThanhVien, String>{
         kh.setNgayHH(rs.getDate("NGAYHETHAN"));
         kh.setmakh(rs.getString("MAKH"));
         return kh;
+    }
+    // OverLoading
+     public void insert(ThanhVien entity,String MaKH) {
+       String sql="insert into ThanhVien values (?,?,?,?,?)";
+        try {
+            JdbcHelper.update(sql,
+                    entity.getMatv(),
+                    entity.getDiem(),
+                    entity.getNgayDK(),
+                    entity.getNgayHH(),
+                    MaKH                
+            );
+        } catch (SQLException ex) {
+            Logger.getLogger(ThanhVienDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

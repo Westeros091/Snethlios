@@ -13,6 +13,7 @@ import com.snethlios.utils.DateHelper;
 import com.snethlios.utils.MsgBox;
 import com.snethlios.utils.XDate;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import main.MainJFrame;
 
@@ -28,11 +29,9 @@ public class KhachHangJPanel extends javax.swing.JPanel {
     public KhachHangJPanel() {
         initComponents();
         init();
-        KhachHang_txtID.setEnabled(false);
-        KhachHang_txtDiem.setEnabled(false);
-        KhachHang_txtngayDK.setEnabled(false);
-        KhachHang_txtngayHH.setEnabled(false);
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -679,10 +678,8 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel46.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel46.setBorder(null);
 
         jPanel47.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel47.setBorder(null);
 
         jLabel77.setText("Mã KH:");
 
@@ -803,7 +800,6 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         );
 
         KhachHanh_tblkhachhang.setBackground(new java.awt.Color(51, 255, 153));
-        KhachHanh_tblkhachhang.setForeground(new java.awt.Color(0, 0, 0));
         KhachHanh_tblkhachhang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -854,21 +850,26 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         );
 
         jPanel48.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel48.setBorder(null);
 
         jLabel84.setText("Số ID");
-
-        KhachHang_txtID.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel85.setText("Ngày Đăng Ký:");
 
         jLabel86.setText("Ngày Hết Hạn:");
 
-        KhachHang_txtngayHH.setBackground(new java.awt.Color(255, 255, 255));
-
         KhachHang_btnluu.setText("Lưu");
+        KhachHang_btnluu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KhachHang_btnluuActionPerformed(evt);
+            }
+        });
 
         KhachHang_btncapnhat.setText("Cập Nhật");
+        KhachHang_btncapnhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KhachHang_btncapnhatActionPerformed(evt);
+            }
+        });
 
         KhachHang_btnmoi.setText("Mới");
         KhachHang_btnmoi.addActionListener(new java.awt.event.ActionListener() {
@@ -878,12 +879,13 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         });
 
         KhachHang_btnxoa.setText("Xóa");
-
-        KhachHang_txtngayDK.setBackground(new java.awt.Color(255, 255, 255));
+        KhachHang_btnxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KhachHang_btnxoaActionPerformed(evt);
+            }
+        });
 
         jLabel87.setText("Số điểm hiện tại:");
-
-        KhachHang_txtDiem.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 102, 102));
@@ -1043,6 +1045,18 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_KhachHang_rdoNuActionPerformed
 
+    private void KhachHang_btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KhachHang_btnxoaActionPerformed
+        xoa();
+    }//GEN-LAST:event_KhachHang_btnxoaActionPerformed
+
+    private void KhachHang_btncapnhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KhachHang_btncapnhatActionPerformed
+        capnhat();
+    }//GEN-LAST:event_KhachHang_btncapnhatActionPerformed
+
+    private void KhachHang_btnluuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KhachHang_btnluuActionPerformed
+        chen();
+    }//GEN-LAST:event_KhachHang_btnluuActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton KhachHang_btncapnhat;
@@ -1150,37 +1164,62 @@ public class KhachHangJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField52;
     // End of variables declaration//GEN-END:variables
     KhachHangDAO khdao = new KhachHangDAO();
-    ThanhVienDAO  tvdao = new ThanhVienDAO();
+    ThanhVienDAO tvdao = new ThanhVienDAO();
     private int index = -1;
-    
-    private void init(){
+
+    private void init() {
         fillToTable();
         index = -1;
     }
-    void sua(){
-        String makh = (String) KhachHanh_tblkhachhang.getValueAt(this.index,0);
+
+    void sua() {
+        String makh = (String) KhachHanh_tblkhachhang.getValueAt(this.index, 0);
         KhachHang kh = khdao.selectByID(makh);
         ThanhVien tv = tvdao.selectByID(makh);
         this.setFormKH(kh);
         this.setFormTV(tv);
     }
-    void moi(){
-        KhachHang kh = new KhachHang();
-        ThanhVien tv = new ThanhVien();
-        this.setFormKH(kh);
-        this.setFormTV(tv);
-        this.index = -1;
+
+    void moi() {
+        try {
+            KhachHang kh = new KhachHang();
+            ThanhVien tv = new ThanhVien();
+            kh.setGioiTinh(true);
+           
+            this.setFormKH(kh); 
+            this.setFormTV(tv);  /// Exception >>> null
+//    JOptionPane.showMessageDialog(null, "Chưa phát hiện lỗi");
+            this.index = -1;
+        } catch (Exception e) {
+            MsgBox.alert(this, "" + e);
+        }
     }
-    void setFormKH(KhachHang kh){
-        KhachHang_txtmakh.setText(kh.getMakh().trim());
+
+    void clear() {
+        buttonGroup1.clearSelection();
+        KhachHang_txtDiem.setText("");
+        KhachHang_txtID.setText("");
+        KhachHang_txtdiachi.setText("");
+        KhachHang_txtdienthoai.setText("");
+        KhachHang_txtghichu.setText("");
+        KhachHang_txtmakh.setText("");
+        KhachHang_txtngayDK.setText("");
+        KhachHang_txtngayHH.setText("");
+        KhachHang_txttenkh.setText("");
+    }
+
+    void setFormKH(KhachHang kh) {
+        KhachHang_txtmakh.setText(kh.getMakh()==null?"":kh.getMakh().trim()); /// Phương thức trim gặp NULL
         KhachHang_txttenkh.setText(kh.getTenkh());
+        KhachHang_txtdiachi.setText(kh.getDiaChi());
+        KhachHang_txtdienthoai.setText(kh.getDienThoai());
         KhachHang_rdoNam.setSelected(kh.getGioiTinh());
         KhachHang_rdoNu.setSelected(!kh.getGioiTinh());
-        KhachHang_txtdienthoai.setText(kh.getDienThoai());
-        KhachHang_txtdiachi.setText(kh.getDiaChi());
-        KhachHang_txtghichu.setText(kh.getGhichu());
+        KhachHang_txtghichu.setText(kh.getGhichu()==null?"":kh.getGhichu()); /// JTextArena lỗi
+            
     }
-    KhachHang getFormKH(){
+
+    KhachHang getFormKH() {
         KhachHang kh = new KhachHang();
         kh.setMakh(KhachHang_txtmakh.getText());
         kh.setTenkh(KhachHang_txttenkh.getText());
@@ -1190,57 +1229,79 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         kh.setGhichu(KhachHang_txtghichu.getText());
         return kh;
     }
-    void setFormTV(ThanhVien tv){
+
+    void setFormTV(ThanhVien tv) {
         KhachHang_txtID.setText(tv.getMatv());
         KhachHang_txtDiem.setText(Integer.toString(tv.getDiem()));
-        KhachHang_txtngayDK.setText(DateHelper.toString(tv.getNgayDK()));
-        KhachHang_txtngayHH.setText(DateHelper.toString(tv.getNgayHH()));
+        KhachHang_txtngayDK.setText(tv.getNgayDK()!=null?XDate.toString(tv.getNgayDK(), "dd/MM/yyyy"):"" );
+        KhachHang_txtngayHH.setText(tv.getNgayHH()!=null?XDate.toString(tv.getNgayHH(), "dd/MM/yyyy"):"");
     }
-    ThanhVien getFormTV(){
+
+    ThanhVien getFormTV() {
         ThanhVien tv = new ThanhVien();
         tv.setMatv(KhachHang_txtID.getText());
         tv.setDiem(Integer.valueOf(KhachHang_txtDiem.getText()));
-        tv.setNgayDK(DateHelper.toDate(KhachHang_txtngayDK.getText()));
-        tv.setNgayHH(DateHelper.toDate(KhachHang_txtngayHH.getText()));
+        tv.setNgayDK(XDate.toDate(KhachHang_txtngayDK.getText(), "dd/MM/yyyy"));
+        tv.setNgayHH(XDate.toDate(KhachHang_txtngayHH.getText(), "dd/MM/yyyy"));
         return tv;
     }
-    private void fillToTable(){
+
+    private void fillToTable() {
         DefaultTableModel dfm = (DefaultTableModel) KhachHanh_tblkhachhang.getModel();
         dfm.setRowCount(0);
         List<KhachHang> ls = khdao.selectAll();
-        for(KhachHang kh :ls){
-            dfm.addRow(new Object[]{kh.getMakh(),kh.getTenkh(),kh.getGioiTinh()?"Nam":"Nữ",kh.getDienThoai(),kh.getDiaChi(),kh.getGhichu()});
+        for (KhachHang kh : ls) {
+            dfm.addRow(new Object[]{kh.getMakh(), kh.getTenkh(), kh.getGioiTinh() ? "Nam" : "Nữ", kh.getDienThoai(), kh.getDiaChi(), kh.getGhichu()});
         }
     }
-    void chen(){
-        
+
+    void chen() {
+        KhachHang kh = getFormKH();
+        ThanhVien tv = getFormTV();
+        try {
+            khdao.insert(kh);
+            JOptionPane.showMessageDialog(null,"Đợi thêm khách hàng");
+            Thread.sleep(3000);
+            tvdao.insert(tv,kh.getMakh());
+            this.fillToTable();
+            this.moi();
+            MsgBox.alert(this, "Thêm mới thành công");
+        } catch (Exception e) {
+            MsgBox.alert(this, "" + e);
+        }
     }
-     void capnhat(){
-    KhachHang kh = getFormKH();
+
+    void capnhat() {
+        KhachHang kh = getFormKH();
+        ThanhVien tv = getFormTV();
         try {
             khdao.update(kh);
+            tvdao.update(tv);
             this.fillToTable();
             MsgBox.alert(this, "Cập nhật thành công!");
         } catch (Exception e) {
-            MsgBox.alert(this, "Cập nhật thất bại!");
+            MsgBox.alert(this, "" + e);
         }
-       
+
     }
-    void xoa(){
+
+    void xoa() {
         if (!Auth.isManager()) {
             MsgBox.alert(this, "Bạn không có quyền xóa khách hàng!");
         } else {
             String makh = KhachHang_txtmakh.getText();
+            String maid = KhachHang_txtID.getText();
             if (makh.equals(Auth.user.getMaNV())) {
                 MsgBox.alert(this, "Bạn không được xóa chính bạn!");
             } else if (MsgBox.confirm(this, "Bạn có thực sự muốn xóa khách hàng này?")) {
                 try {
                     khdao.delete(makh);
+                    tvdao.delete(maid);
                     this.fillToTable();
                     this.moi();
                     MsgBox.alert(this, "Xóa thành công");
                 } catch (Exception e) {
-                    MsgBox.alert(this, "Xóa thất bại");
+                    MsgBox.alert(this, "" + e);
                 }
             }
         }
