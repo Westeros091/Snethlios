@@ -1423,11 +1423,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KhachHang_btnluuActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="KhachHang_btncapnhat">
           <Properties>
             <Property name="text" type="java.lang.String" value="C&#x1ead;p Nh&#x1ead;t"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KhachHang_btncapnhatActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="KhachHang_btnmoi">
           <Properties>
@@ -1441,6 +1447,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KhachHang_btnxoaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="KhachHang_txtngayDK">
         </Component>

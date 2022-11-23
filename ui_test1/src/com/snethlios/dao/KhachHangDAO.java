@@ -38,7 +38,7 @@ public class KhachHangDAO extends SnethliosDAO<KhachHang, String>{
 
     @Override
     public void update(KhachHang entity) {
-       String sql="update KHACHHANG set TENKH = ?, DIACHI =?, DIENTHOAI=?,GIOITINH=?,GHICHU=? WHERE MAKH =?";
+       String sql="update KHACHHANG set TENKH = ?, DIACHI =?, SDT=?,GIOITINH=?,GHICHU=? WHERE MAKH =?";
         try {
             JdbcHelper.update(sql,
                     entity.getTenkh(),
