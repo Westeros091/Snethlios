@@ -1,6 +1,7 @@
-+ Tạo logo, icon
-+ Kiếm hình ảnh giày
-+ java word 
-+ java biểu đồ
-+ Erd
++ Bán hàng
++ Lịch sử
++ Khuyến mãi 
 + Java id face
++ Báo cáo word
+	
+
