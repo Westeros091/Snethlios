@@ -16,6 +16,7 @@ import form.Form_1;
 import form.Form_2;
 import form.Form_3;
 import form.KhachHangJPanel;
+import form.KhuyenMaiJPanel;
 import form.NewJPanel;
 import form.NhanVienJPanel;
 import form.SanPhamJPanel;
@@ -39,6 +40,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private NewJPanel test;
     private TrangChuJPanel trangChu;
     private SanPhamJPanel sanPham;
+    private KhuyenMaiJPanel khuyenMai;
     private BanHangJPanel banHang;
     private NhanVienJPanel nhanVien;
     private KhachHangJPanel khachHang;
@@ -57,6 +59,7 @@ public class MainJFrame extends javax.swing.JFrame {
         test = new NewJPanel();
         banHang = new BanHangJPanel();
         sanPham = new SanPhamJPanel();
+        khuyenMai = new KhuyenMaiJPanel();
         nhanVien = new NhanVienJPanel();
         khachHang = new KhachHangJPanel();
         doiMK = new DoiMKJPanel();
@@ -72,7 +75,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 } else if (index == 2) {
                     setForm(sanPham);
                 } else if (index == 3) {
-                    setForm(test);
+                    setForm(khuyenMai);
                 } else if (index == 4) {
 //                    setForm(kh);
                 } else if (index == 5) {
