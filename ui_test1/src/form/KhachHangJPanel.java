@@ -42,6 +42,7 @@ public class KhachHangJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        none = new javax.swing.JRadioButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel8 = new javax.swing.JPanel();
         jPanel40 = new javax.swing.JPanel();
@@ -144,6 +145,9 @@ public class KhachHangJPanel extends javax.swing.JPanel {
         jLabel87 = new javax.swing.JLabel();
         KhachHang_txtDiem = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+
+        buttonGroup1.add(none);
+        none.setText("jRadioButton1");
 
         jInternalFrame1.setClosable(true);
         jInternalFrame1.setIconifiable(true);
@@ -1032,7 +1036,12 @@ public class KhachHangJPanel extends javax.swing.JPanel {
 
     private void KhachHanh_tblkhachhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhachHanh_tblkhachhangMouseClicked
         if (evt.getClickCount() > 0) {
-            index = KhachHanh_tblkhachhang.getSelectedRow();
+//            try{
+//            index = KhachHanh_tblkhachhang.getSelectedRow();
+//            sua();}catch(Exception e ){
+//                JOptionPane.showMessageDialog(null, e);
+//            }
+   index = KhachHanh_tblkhachhang.getSelectedRow();
             sua();
         }
     }//GEN-LAST:event_KhachHanh_tblkhachhangMouseClicked
@@ -1162,6 +1171,7 @@ public class KhachHangJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField50;
     private javax.swing.JTextField jTextField51;
     private javax.swing.JTextField jTextField52;
+    private javax.swing.JRadioButton none;
     // End of variables declaration//GEN-END:variables
     KhachHangDAO khdao = new KhachHangDAO();
     ThanhVienDAO tvdao = new ThanhVienDAO();
@@ -1290,13 +1300,13 @@ public class KhachHangJPanel extends javax.swing.JPanel {
             MsgBox.alert(this, "Bạn không có quyền xóa khách hàng!");
         } else {
             String makh = KhachHang_txtmakh.getText();
-            String maid = KhachHang_txtID.getText();
+//            String maid = KhachHang_txtID.getText();
             if (makh.equals(Auth.user.getMaNV())) {
                 MsgBox.alert(this, "Bạn không được xóa chính bạn!");
             } else if (MsgBox.confirm(this, "Bạn có thực sự muốn xóa khách hàng này?")) {
                 try {
                     khdao.delete(makh);
-                    tvdao.delete(maid);
+//                    tvdao.delete(maid);
                     this.fillToTable();
                     this.moi();
                     MsgBox.alert(this, "Xóa thành công");
